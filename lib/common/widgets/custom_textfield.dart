@@ -16,6 +16,11 @@ class CustomTextField extends StatelessWidget {
         horizontal: 10.0,
       ),
       child: TextFormField(
+        style: const TextStyle(
+          color: Color(
+            0xFF0D0339,
+          ),
+        ),
         controller: controller,
         decoration: InputDecoration(
           labelStyle: const TextStyle(
