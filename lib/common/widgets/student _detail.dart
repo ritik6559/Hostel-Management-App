@@ -1,44 +1,35 @@
+
 import 'package:flutter/material.dart';
 
 class StudentDetail extends StatelessWidget {
   final String title;
-  final String subtitile;
+  final String subtitle;
+  final Color backgroundColor;
+  final Color titleColor;
+  final Color subtitleColor;
+
   const StudentDetail({
     super.key,
     required this.title,
-    required this.subtitile,
+    required this.subtitle,
+    this.backgroundColor = Colors.grey,
+    this.titleColor = Colors.black,
+    this.subtitleColor = Colors.black87,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Color(
-          0xFF0D0339,
-        ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            20,
-          ),
-        ),
-      ),
+    return Card(
+      color: backgroundColor,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
       child: ListTile(
         title: Text(
           title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 20,
-          ),
+          style: TextStyle(color: titleColor, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          subtitile,
-          style: const TextStyle(
-            color: Colors.white,
-          ),
+          subtitle,
+          style: TextStyle(color: subtitleColor),
         ),
       ),
     );

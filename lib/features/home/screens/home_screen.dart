@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/common/widgets/student%20_detail.dart';
-import 'package:flutter_and_excel/core/secrets/secrets.dart';
 import 'package:gsheets/gsheets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_and_excel/core/secrets/secrets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String name = '';
   final _gsheets = GSheets(credential);
-  final _spreadsheetId = '17qd8Rp81NA0W2H5Bjd2p2olGDJYnB_dABElAstqNwxo';
   Worksheet? _worksheet;
   List<Map<String, dynamic>> _students = [];
 
@@ -27,19 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _fetchStudentData() async {
     try {
-      final ss = await _gsheets.spreadsheet(_spreadsheetId);
+      final ss = await _gsheets.spreadsheet(spreadSheetId);
       _worksheet = ss.worksheetByTitle('All Students');
       if (_worksheet != null) {
-        // Fetch all rows, including headers
         final allRows = await _worksheet!.values.allRows();
         print('All Rows: $allRows'); // Debug print
 
         if (allRows.length > 1) {
-          // Assuming row 2 contains the headers
-          final headers =
-              allRows[1]; // Headers are in the second row (A2, B2, etc.)
-          final dataRows =
-              allRows.skip(2).toList(); // Data starts from the third row
+          final headers = allRows[1];
+          final dataRows = allRows.skip(2).toList();
 
           setState(() {
             _students = dataRows.map((row) {
@@ -62,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   getName() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-
     name = pref.getString('wardenName') ?? '';
     setState(() {});
   }
@@ -72,14 +66,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.black,
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFFFDFDFD),
-              Color(0xFF43328B),
+              Color(0xFF1A1A1A),
+              Color(0xFF2C2C2C),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -97,37 +92,37 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Color(
-                      0xFF0D0339,
-                    ),
+                    color: Colors.white,
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 const Text(
                   'All Students',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Color(
-                      0xFF0D0339,
-                    ),
+                    color: Colors.white70,
                   ),
                 ),
                 Expanded(
                   child: _students.isEmpty
                       ? const Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
                         )
                       : ListView.builder(
                           itemCount: _students.length,
                           itemBuilder: (context, index) {
                             final student = _students[index];
                             return StudentDetail(
-                                title: 'Roll No: ${student['roll_no']}',
-                                subtitile:
-                                    'Name: ${student['name']}, \nHostel: ${student['hostel_no']}, \nFloor: ${student['floor']}, \nRoom No: ${student['room_no']}, \nRoom Type: ${student['room_type']}');
+                              title: 'Roll No: ${student['roll_no']}',
+                              subtitle:
+                                  'Name: ${student['name']}, \nHostel: ${student['hostel_no']}, \nFloor: ${student['floor']}, \nRoom No: ${student['room_no']}, \nRoom Type: ${student['room_type']}',
+                              backgroundColor: Colors.grey[900]!,
+                              titleColor: Colors.white,
+                              subtitleColor: Colors.white70,
+                            );
                           },
                         ),
                 ),
@@ -139,3 +134,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+

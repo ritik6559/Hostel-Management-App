@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/features/home/screens/home_screen.dart';
+import 'package:flutter_and_excel/features/search/screens/search_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -11,14 +12,10 @@ class BottomNavBar extends StatefulWidget {
 
 class _HomeScreenState extends State<BottomNavBar> {
   int currentPage = 0;
-  List<Widget> screens = const [
-    HomeScreen(),
-    Scaffold(
-      body: Center(
-        child: Text("Search"),
-      ),
-    ),
-    Scaffold(
+  List<Widget> screens = [
+    const HomeScreen(),
+    SearchScreen(),
+    const Scaffold(
       body: Text('add'),
     )
   ];

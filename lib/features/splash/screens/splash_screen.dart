@@ -54,50 +54,39 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFFFDFDFD),
-              Color(0xFF43328B),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) {
-                  return Transform.scale(
-                    scale: _animation.value,
-                    child: child,
-                  );
-                },
-                child: Image.asset(
-                  'assets/logo.png',
-                  height: 120,
-                ),
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child) {
+                return Transform.scale(
+                  scale: _animation.value,
+                  child: child,
+                );
+              },
+              child: Image.asset(
+                'assets/logo.png',
+                height: 120,
               ),
-              FadeTransition(
-                opacity: _animation,
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: Text(
-                    'DorMamu',
-                    style: TextStyle(
-                      color: Color(0xFF0D0339),
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
+            ),
+            FadeTransition(
+              opacity: _animation,
+              child: const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: Text(
+                  'DorMamu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -17,30 +17,34 @@ class CustomTextField extends StatelessWidget {
       ),
       child: TextFormField(
         style: const TextStyle(
-          color: Color(
-            0xFF0D0339,
-          ),
+          color: Colors.white, // Text color in dark mode
         ),
         controller: controller,
         decoration: InputDecoration(
           labelStyle: const TextStyle(
-            color: Color(0xFF43328B),
+            color: Colors.white70, // Label color in dark mode
           ),
           filled: true,
-          fillColor: Colors.white,
-          label: const Text(
-            "Enter your name",
-            style: TextStyle(
-              color: Color(0xFF0D0339),
+          fillColor: const Color(0xFF1F1F1F), // Fill color for the text field in dark mode
+          label: Text(
+            hint, // Use the hint parameter for the label text
+            style: const TextStyle(
+              color: Colors.white70, // Label text color
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none,
+            borderSide: const BorderSide(
+              color: Color(0xFF434343), // Border color in dark mode
+              width: 1.0,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none,
+            borderSide: const BorderSide(
+              color: Color(0xFFBB86FC), // Focused border color in dark mode
+              width: 2.0,
+            ),
           ),
         ),
       ),

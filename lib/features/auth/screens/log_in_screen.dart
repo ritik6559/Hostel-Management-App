@@ -67,103 +67,93 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFFFDFDFD),
-              Color(0xFF43328B),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: Image.asset(
-                        'assets/log_in_page.png',
-                        height: 250,
-                        fit: BoxFit.cover,
-                      ),
+      backgroundColor: const Color(0xFF121212), // Dark background color
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 50.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Image.asset(
+                      'assets/log_in_page.png',
+                      height: 250,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: const Column(
-                        children: [
-                          Text(
-                            'Welcome Sir!',
-                            style: TextStyle(
-                              color: Color(0xFF0D0339),
-                              fontSize: 35,
-                              fontWeight: FontWeight.w600,
-                            ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: const Column(
+                      children: [
+                        Text(
+                          'Welcome Sir!',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.w600,
                           ),
-                          Text(
-                            'Please enter your name',
-                            style: TextStyle(
-                              color: Color(0xFF0D0339),
-                              fontSize: 20,
-                              fontWeight: FontWeight.normal,
-                            ),
+                        ),
+                        Text(
+                          'Please enter your name',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: CustomTextField(
-                        controller: _wardenNameController,
-                        hint: 'Name',
-                      ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: CustomTextField(
+                      controller: _wardenNameController,
+                      hint: 'Name',
+                      
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SlideTransition(
-                      position: _slideAnimation,
-                      child: CustomButton(
-                        onTap: _login,
-                      ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: CustomButton(
+                      onTap: _login,
+                      
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 60.0,
-                      vertical: 40,
-                    ),
-                    child: Divider(
-                      thickness: 3,
-                      color: Color(0xFF43328B),
-                    ),
-                  )
-                ],
-              ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 60.0,
+                    vertical: 40,
+                  ),
+                  child: Divider(
+                    thickness: 3,
+                    color: Color(0xFFBB86FC),
+                  ),
+                )
+              ],
             ),
           ),
         ),
