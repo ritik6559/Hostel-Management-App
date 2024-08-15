@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/features/auth/screens/log_in_screen.dart';
-import 'package:flutter_and_excel/home_screen.dart';
+import 'package:flutter_and_excel/features/home/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MyWidget extends StatefulWidget {
-  MyWidget({super.key});
+class AuthGate extends StatefulWidget {
+  AuthGate({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<AuthGate> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
-  late String name;
+class _MyWidgetState extends State<AuthGate> {
+  String name = '';
 
   @override
   void initState() {
@@ -21,13 +21,15 @@ class _MyWidgetState extends State<MyWidget> {
 
   getName() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
+
     name = pref.getString('wardenName') ?? '';
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     if (name.isEmpty) {
-      return LoginScreen();
+      return const LoginScreen();
     }
     return const HomeScreen();
   }
