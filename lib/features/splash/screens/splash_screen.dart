@@ -8,17 +8,47 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => AuthGate(),
-        ),
-      );
-    });
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 1000,
+      ),
+    );
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+
+    _controller.forward().then(
+      (_) {
+        Future.delayed(
+          const Duration(milliseconds: 500),
+          () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => AuthGate(),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -39,16 +69,31 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/logo.png',
-                height: 120,
+              AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _animation.value,
+                    child: child,
+                  );
+                },
+                child: Image.asset(
+                  'assets/logo.png',
+                  height: 120,
+                ),
               ),
-              const Text(
-                'DorMamu',
-                style: TextStyle(
-                  color: Color(0xFF0D0339),
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
+              FadeTransition(
+                opacity: _animation,
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    'DorMamu',
+                    style: TextStyle(
+                      color: Color(0xFF0D0339),
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ],

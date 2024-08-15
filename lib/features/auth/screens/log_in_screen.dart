@@ -14,6 +14,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _wardenNameController = TextEditingController();
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
 
   Future<void> _saveWardenName() async {
     final prefs = await SharedPreferences.getInstance();
@@ -27,6 +30,38 @@ class _LoginScreenState extends State<LoginScreen>
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+
+    _fadeAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.3),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _wardenNameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -52,42 +87,70 @@ class _LoginScreenState extends State<LoginScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Image.asset(
-                    'assets/log_in_page.png',
-                    height: 250,
-                    fit: BoxFit.cover,
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: Image.asset(
+                        'assets/log_in_page.png',
+                        height: 250,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 50,
                   ),
-                  const Text(
-                    'Welcome Sir!',
-                    style: TextStyle(
-                      color: Color(0xFF0D0339),
-                      fontSize: 35,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const Text(
-                    'Please enter your name',
-                    style: TextStyle(
-                      color: Color(0xFF0D0339),
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: Column(
+                        children: const [
+                          Text(
+                            'Welcome Sir!',
+                            style: TextStyle(
+                              color: Color(0xFF0D0339),
+                              fontSize: 35,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            'Please enter your name',
+                            style: TextStyle(
+                              color: Color(0xFF0D0339),
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  CustomTextField(
-                    controller: _wardenNameController,
-                    hint: 'Name',
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: CustomTextField(
+                        controller: _wardenNameController,
+                        hint: 'Name',
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  CustomButton(
-                    onTap: _login,
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: CustomButton(
+                        onTap: _login,
+                      ),
+                    ),
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(
