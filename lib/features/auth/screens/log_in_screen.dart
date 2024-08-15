@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/common/widgets/custom_button.dart';
 import 'package:flutter_and_excel/common/widgets/custom_textfield.dart';
-import 'package:flutter_and_excel/features/home/screens/home_screen.dart';
+import 'package:flutter_and_excel/features/home/widget/bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen>
     _saveWardenName().then((_) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => const BottomNavBar()),
       );
     });
   }
@@ -105,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen>
                     opacity: _fadeAnimation,
                     child: SlideTransition(
                       position: _slideAnimation,
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           Text(
                             'Welcome Sir!',
                             style: TextStyle(

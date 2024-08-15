@@ -4,7 +4,7 @@ import 'package:flutter_and_excel/features/home/widget/bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthGate extends StatefulWidget {
-  AuthGate({super.key});
+  const AuthGate({super.key});
 
   @override
   State<AuthGate> createState() => _MyWidgetState();

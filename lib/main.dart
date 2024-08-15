@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/core/secrets/secrets.dart';
-import 'package:flutter_and_excel/features/auth/screens/log_in_screen.dart';
 import 'package:flutter_and_excel/features/splash/screens/splash_screen.dart';
 import 'package:gsheets/gsheets.dart';
 
@@ -84,10 +83,14 @@ class _HostelDataScreenState extends State<HostelDataScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hostel Management'),
+        title: const Text(
+          'Hostel Management',
+        ),
       ),
       body: _students.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
           : ListView.builder(
               itemCount: _students.length,
               itemBuilder: (context, index) {
