@@ -23,9 +23,22 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Center(
-          child: Image.asset(
-            'assets/logo.png',
-            height: 80,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/logo.png',
+                height: 120,
+              ),
+              const Text(
+                'DorMamu',
+                style: TextStyle(
+                  color: Color(0xFF0D0339),
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
           ),
         ),
       ),
