@@ -127,7 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemBuilder: (context, index) {
                       var result = _searchResults[index];
                       return StudentDetail(
-                        title: '${result[1]} - ',
+                        title: result[1],
                         subtitle:
                             'Name: ${result[2]} \nFloor: ${result[4]} \nRoom: ${result[5]}',
                         backgroundColor: Colors.grey[900]!,
