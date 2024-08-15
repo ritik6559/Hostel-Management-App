@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/features/auth/screens/log_in_screen.dart';
-import 'package:flutter_and_excel/features/home/screens/home_screen.dart';
+import 'package:flutter_and_excel/features/home/widget/bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthGate extends StatefulWidget {
@@ -31,6 +31,6 @@ class _MyWidgetState extends State<AuthGate> {
     if (name.isEmpty) {
       return const LoginScreen();
     }
-    return const HomeScreen();
+    return const BottomNavBar();
   }
 }
