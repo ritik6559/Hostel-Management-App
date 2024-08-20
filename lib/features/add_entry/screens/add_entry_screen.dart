@@ -53,11 +53,9 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
   Future<void> addEntry(String rollNumber, String name, String hostelNo, String floor, String roomNo, String roomType) async {
     if (worksheet == null) return;
 
-    // Get the current number of rows (to calculate the SNo.)
     final currentRows = await worksheet!.values.allRows();
     final sno = currentRows.length + 1;
 
-    // Append a new row with the appropriate data
     await worksheet!.values.appendRow([sno.toString(), rollNumber, name, hostelNo, floor, roomNo, roomType]);
   }
 

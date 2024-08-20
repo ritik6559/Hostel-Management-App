@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/features/splash/screens/splash_screen.dart';
 
-//create credentials
 
 void main() => runApp(
       const MyApp(),
