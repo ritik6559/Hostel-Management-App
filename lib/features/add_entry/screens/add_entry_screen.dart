@@ -56,7 +56,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
     final currentRows = await worksheet!.values.allRows();
     final sno = currentRows.length + 1;
 
-    await worksheet!.values.appendRow([sno.toString(), rollNumber, name, hostelNo, floor, roomNo, roomType]);
+    await worksheet!.values.appendRow([sno.toString(), rollNumber, name.toUpperCase(), hostelNo.toUpperCase(), floor, roomNo, roomType]);
   }
 
   @override
