@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_and_excel/features/add_entry/screens/add_entry_screen.dart';
 import 'package:flutter_and_excel/features/home/screens/home_screen.dart';
 import 'package:flutter_and_excel/features/search/screens/search_screen.dart';
 
@@ -15,9 +16,7 @@ class _HomeScreenState extends State<BottomNavBar> {
   List<Widget> screens = [
     const HomeScreen(),
     SearchScreen(),
-    const Scaffold(
-      body: Text('add'),
-    )
+    AddEntryScreen(),
   ];
 
   @override
