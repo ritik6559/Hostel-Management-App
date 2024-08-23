@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_and_excel/features/home/models/hostel_model.dart';
+import 'package:flutter_and_excel/features/hostel_details/screen/hostel_details_screen.dart';
 
 class HostelTile extends StatelessWidget {
   final HostelModel hostel;
@@ -11,7 +12,15 @@ class HostelTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HostelDetailsScreen(
+              hostel: hostel,
+            ),
+          ),
+        );
+      },
       child: Container(
         margin: const EdgeInsets.all(
           15,
