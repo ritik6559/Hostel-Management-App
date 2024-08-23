@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Hostel Management',
       theme: ThemeData(
         brightness:
-            Brightness.dark, // Use a dark theme to complement the background
+            Brightness.light, // Use a dark theme to complement the background
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
