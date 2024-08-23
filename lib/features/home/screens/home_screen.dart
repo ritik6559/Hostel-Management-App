@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_and_excel/features/home/models/hostel_model.dart';
+import 'package:flutter_and_excel/models/hostel_model.dart';
 import 'package:flutter_and_excel/features/home/widget/hostel_tile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

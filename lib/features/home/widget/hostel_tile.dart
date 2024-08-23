@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_and_excel/features/home/models/hostel_model.dart';
+import 'package:flutter_and_excel/models/hostel_model.dart';
 import 'package:flutter_and_excel/features/hostel_details/screen/hostel_details_screen.dart';
 
 class HostelTile extends StatelessWidget {

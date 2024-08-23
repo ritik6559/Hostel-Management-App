@@ -27,7 +27,7 @@ class _HomeScreenState extends State<BottomNavBar> {
           margin: const EdgeInsets.all(20),
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 3, 0, 12).withOpacity(0.8),
+            color: const Color(0xFF17203A).withOpacity(0.8),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
