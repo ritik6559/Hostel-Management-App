@@ -29,39 +29,45 @@ class _HostelDetailsScreenState extends State<HostelDetailsScreen> {
 
   Future<void> fetchStudentsFromSheets() async {
     print(('hello 1'));
-    final gsheets = GSheets(credential);
-    print('hello2');
-    final ss = await gsheets.spreadsheet(spreadSheetId);
-    print("hello");
-    final sheet = await ss.worksheetByTitle('All Students');
+    try {
+      final gsheets = GSheets(credential);
+      print('hello2');
+      final ss = await gsheets.spreadsheet(spreadSheetId);
+      print("hello");
+      final sheet = await ss.worksheetByTitle('All Students');
 
-    if (sheet == null) {
-      print('Sheet not found');
-      setState(() => isLoading = false);
-      return;
-    }
-
-    final rows = await sheet.values.allRows();
-    print(rows.length);
-
-    // Assuming the first row is headers
-    for (var i = 2; i < rows.length; i++) {
-      final row = rows[i];
-      if (row.length >= 4 && isStudentInHostel(row[3])) {
-        students.add(Student(
-          name: row[2],
-          rollNo: row[1],
-          roomNo: row[5],
-          floor: row[4],
-          hostel: row[3],
-        ));
+      if (sheet == null) {
+        print('Sheet not found');
+        setState(() => isLoading = false);
+        return;
       }
-    }
 
-    setState(() {
-      filteredStudents = students;
-      isLoading = false;
-    });
+      final rows = await sheet.values.allRows();
+      print(rows);
+
+      // Assuming the first row is headers
+      for (var i = 1; i < rows.length; i++) {
+        final row = rows[i];
+        if (row.length >= 10 && isStudentInHostel(row[0])) {
+          students.add(Student(
+            name: row[4],
+            rollNo: row[3].toString(),
+            roomNo: row[1],
+            floor: row[5],
+            hostel: row[0],
+            studentPhoneNo: row[7],
+            parentPhoneNo: row[8],
+          ));
+        }
+      }
+
+      setState(() {
+        filteredStudents = students;
+        isLoading = false;
+      });
+    } catch (e) {
+      print("error:- ${e.toString()}");
+    }
   }
 
   bool isStudentInHostel(String roomNo) {

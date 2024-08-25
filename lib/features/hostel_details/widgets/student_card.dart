@@ -28,10 +28,12 @@ class StudentCard extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
-              Text('Roll No: ${student.name}'),
+              Text('Roll No: ${student.rollNo}'),
               Text('Room: ${student.roomNo}'),
               Text('Floor: ${student.floor}'),
               Text('Hostel: ${student.hostel}'),
+              Text('Student\' phone no: ${student.studentPhoneNo}'),
+              Text('Parents\' phone no: ${student.parentPhoneNo}'),
             ],
           )),
     );

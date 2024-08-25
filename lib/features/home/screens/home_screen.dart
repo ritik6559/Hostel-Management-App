@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HostelModel(
       name: 'Azad',
       color: Color(0xFFdee8ff),
-      hostelNo: ['h14'],
+      hostelNo: ['h14','h-8','h-9','h-10'],
     ),
     HostelModel(
       name: 'Geeta',
