@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
         child: Container(
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.blue,
             borderRadius: BorderRadius.circular(
               12,
             ),
@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
             child: Text(
               'Sign In',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
