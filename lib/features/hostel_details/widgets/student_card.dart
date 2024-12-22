@@ -35,22 +35,34 @@ class StudentCard extends StatelessWidget {
             Text('Hostel: ${student.hostel}'),
             GestureDetector(
               onLongPress: () {
-                FlutterClipboard.copy(student.studentPhoneNo).then((value) {
-                  print('copied');
-                });
+                FlutterClipboard.copy(student.studentPhoneNo).then(
+                  (value) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        content: Text('copied'),
+                      ),
+                    );
+                  },
+                );
               },
               child: Text(
-                'Student\' phone no: ${student.studentPhoneNo}',
+                'Student\'s phone no: ${student.studentPhoneNo}',
               ),
             ),
             GestureDetector(
               onLongPress: () {
                 FlutterClipboard.copy(student.studentPhoneNo).then((value) {
-                  print('copied');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        content: Text('copied'),
+                      ),
+                    );
                 });
               },
               child: Text(
-                'Parents\' phone no: ${student.parentPhoneNo}',
+                'Parent\'s phone no: ${student.parentPhoneNo}',
               ),
             ),
           ],
